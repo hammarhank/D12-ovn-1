@@ -12,7 +12,8 @@
     internal class Program
     {
         static int[] primtal = { };
-        static bool[] bools = new bool[50]; 
+        static bool[] bools = new bool[50];
+      static int[] tal = { 4, 3, 9, 2, 5, 10, 6, 1, 7, 8, };
         static void Main(string[] args)
         {
 
@@ -43,6 +44,7 @@
             Console.WriteLine("9. Primtal Array");
             Console.WriteLine("10. Kvadraten på primtal");
             Console.WriteLine("11. Eratosthenes såll");
+            Console.WriteLine("12. Array - minsta och högsta värdet");
             Console.WriteLine("99. Avsluta");
 
             int val = Int32.Parse(Console.ReadLine());
@@ -81,6 +83,9 @@
                     break;
                 case 11:
                     ovning11();
+                    break;
+                case 12:
+                    ovning12();
                     break;
                 case 99:
                     Console.WriteLine("Tack för mig.");
@@ -273,8 +278,42 @@
 
                 reset();
             }
-        }
+            static void ovning12()
+            {
+                
 
+                int max = tal.Max();
+                int maxIndex = tal.ToList().IndexOf(max);
+                int min = tal.Min();
+                int minIndex = tal.ToList().IndexOf(min);
+                Console.WriteLine($"Största talet i arrayen är {max} index {maxIndex} och minsta är {min} index {minIndex}");
+                printArr(tal);
+                Console.WriteLine();
+                for (int n = 0; n < 9; n++)
+                {
+                    for (int i = 0; i < tal.Length - 1; i++)
+                    {
+                        if (tal[i] < tal[i + 1])
+                        {
+                            int temp = tal[i];
+                            tal[i] = tal[i + 1];
+                            tal[i + 1] = temp;
+                        }
+                    }
+                   printArr(tal);
+                }
+                reset();
+
+            }
+        }
+        static void printArr(int[] A)
+        {
+            foreach (int a in A)
+            {
+                Console.Write($"{a} ");
+            }
+            Console.WriteLine();
+        }
         static void SetArrayTrue()
         {
             bools = Enumerable.Repeat(true, 50).ToArray();
